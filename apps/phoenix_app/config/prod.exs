@@ -15,8 +15,12 @@ use Mix.Config
 # which you typically run after static files are built.
 config :phoenix_app, PhoenixAppWeb.Endpoint,
   load_from_system_env: true,
-  url: [host: "example.com", port: 80],
-  cache_static_manifest: "priv/static/cache_manifest.json"
+  http: [:inet6, port: {:system, "PORT"}],
+  url: [host: "localhost", port: 80],
+  cache_static_manifest: "priv/static/cache_manifest.json",
+  server: true,
+  root: ".",
+  version: Application.spec(:phoenix_app, :vsn)
 
 # Do not print debug messages in production
 config :logger, level: :info
